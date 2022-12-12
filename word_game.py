@@ -50,10 +50,14 @@ def check_guess_char(char):
             print('You have already guessed that letter. Choose again.')
         else:
             return guess_char
+def playagain():
+        print("Do you want to play again?")
+        x=input("Enter yes or no!!\n")
+        if x=="yes":
+            return True
 c_word=""
 m_word=""
 secret_word=random.choice(s_word)
-gameIsDone = False
 blanks = '_' * len(secret_word)
 print("This is word guessin game".center(50,'-'))
 while True:
@@ -66,17 +70,13 @@ while True:
                 blanks=blanks[:i]+secret_word[i]+blanks[i+1:]
                 print("The secret word is:\n",blanks)
                 if "_" not in blanks:
-                    print('Yes! The secret word is "' + secret_word + '"! You have won!')
-                    gameIsDone=True          
+                    print('Yes! The secret word is "' + secret_word + '"! You have won!')                          
     else:
         m_word=m_word+guess1
         if len(m_word)==len(HANGMAN_PICS):
             print('You have run out of guesses')
-            print("Do you want to play again?")
-            x=input("Enter yes or no!!\n")
-            if x=="yes":
+            if playagain():
                 m_word=""
-                gameIsDone = False
                 print("This is word guessin game".center(50,'-'))
                 secret_word=random.choice(s_word)
             else:
